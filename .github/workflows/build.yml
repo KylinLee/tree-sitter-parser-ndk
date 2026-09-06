@@ -1,0 +1,41 @@
+name: build
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (defaults to date)'
+        required: false
+        type: string
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: android-actions/setup-android@v3
+        with:
+          ndk-version: 27.1.12297006
+
+      - name: Build grammars
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 scripts/build.py
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag || github.ref_name }}
+          files: |
+            dist/flat/*
+            dist/manifest.json
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
