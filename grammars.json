@@ -1,7 +1,7 @@
 {
   "abi": 14,
   "ndk_api": 26,
-  "abis": ["arm64-v8a", "armeabi-v7a", "x86_64", "x86"],
+  "abis": ["arm64-v8a", "x86_64"],
   "languages": [
     {
       "id": "json",
