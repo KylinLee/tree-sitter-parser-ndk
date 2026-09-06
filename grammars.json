@@ -1,0 +1,24 @@
+{
+  "abi": 14,
+  "ndk_api": 26,
+  "abis": ["arm64-v8a", "armeabi-v7a", "x86_64", "x86"],
+  "languages": [
+    {
+      "id": "json",
+      "repo": "tree-sitter/tree-sitter-json",
+      "tag": "v0.24.8",
+      "libs": [
+        { "name": "tree_sitter_json", "symbol": "tree_sitter_json", "dir": "src" }
+      ]
+    },
+    {
+      "id": "typescript",
+      "repo": "tree-sitter/tree-sitter-typescript",
+      "tag": "v0.23.2",
+      "libs": [
+        { "name": "tree_sitter_typescript", "symbol": "tree_sitter_typescript", "dir": "typescript/src" },
+        { "name": "tree_sitter_tsx", "symbol": "tree_sitter_tsx", "dir": "tsx/src" }
+      ]
+    }
+  ]
+}
